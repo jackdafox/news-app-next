@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News App
 
-## Getting Started
+A Next.js application that fetches, syncs, and displays full news articles. Built with React Server Components, Drizzle ORM, SQLite, and Shadcn UI.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Dynamic news feed
+- Light and Dark modes
+- Admin dashboard to manually synchronize data
+- Categorized articles (Business, Entertainment, General, Health, Science, Sports, Technology)
+- Database persistence via SQLite
+
+---
+
+## 🐳 How to Run Locally using Docker (For New Users)
+
+The easiest way to run this application on your machine without installing Node.js, npm, or worrying about dependencies is by using Docker.
+
+### Prerequisites
+1. **Docker Desktop**: Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop). Make sure it is running.
+2. **NewsAPI Key**: Register for a free API key at [NewsAPI.org](https://newsapi.org/).
+
+### Step-by-Step Guide
+
+**Step 1. Configure your API Key**
+Create a new file named `.env.local` in the root folder of this project (next to this README). Inside that file, add your NewsAPI key:
+```env
+NEWS_API_KEY=your_actual_key_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Step 2. Build the Docker Image**
+Open your terminal (Command Prompt, PowerShell, or Terminal) in the root of the project directory and run the following command to build the Docker image. This will download everything the app needs and prepare it:
+```bash
+docker build -t news-app-image .
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*Note: This step might take a few minutes the first time as it downloads the necessary base images.*
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Step 3. Run the Docker Container**
+Once the image is built, start the application by running:
+```bash
+docker run -d -p 3000:3000 --env-file .env.local -v news_app_db_volume:/app/data --name my-news-app news-app-image
+```
 
-## Learn More
+Here's what this command does:
+- `-d`: Runs the container in the background (detached mode).
+- `-p 3000:3000`: Forwards port 3000 on your machine to port 3000 inside the container.
+- `--env-file .env.local`: Passes your API key into the container.
+- `-v news_app_db_volume:/app/data`: Creates a persistent volume so if you restart the container, your saved news articles won't be deleted.
+- `--name my-news-app`: Names your running container so it's easy to identify.
 
-To learn more about Next.js, take a look at the following resources:
+**Step 4. Open the App in your Browser**
+Open your web browser and go to:
+[http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Step 5. Sync the Latest News**
+To initially populate the website with news (or fetch the latest news):
+1. Go to [http://localhost:3000/admin](http://localhost:3000/admin)
+2. Click the **"Sync Latest News"** button.
+3. Once completed, return to the homepage to read the articles!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### Useful Docker Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Stop the application:**
+```bash
+docker stop my-news-app
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Start the application again:**
+```bash
+docker start my-news-app
+```
+
+**Remove the container:**
+```bash
+docker rm -f my-news-app
+```
+
+---
+
+## 🛠️ How to Run Locally with Node.js (For Developers)
+
+If you prefer to run the application directly on your machine for development without Docker:
+
+1. Create the `.env.local` file with your `NEWS_API_KEY` as shown above.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Access the site at `http://localhost:3000`.
