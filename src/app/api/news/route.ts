@@ -5,11 +5,12 @@ export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
         const categorySlug = searchParams.get('category');
-        const limit = parseInt(searchParams.get('limit') || '10', 10);
+        const limit = parseInt(searchParams.get('limit') || '8', 10);
+        const page = parseInt(searchParams.get('page') || '1', 10);
 
-        const articles = await getLatestArticles(limit, categorySlug);
+        const result = await getLatestArticles(page, limit, categorySlug);
 
-        return NextResponse.json({ articles });
+        return NextResponse.json(result);
     } catch (error) {
         console.error('Error fetching articles:', error);
         return NextResponse.json(

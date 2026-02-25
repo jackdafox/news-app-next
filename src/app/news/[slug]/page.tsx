@@ -4,7 +4,11 @@ import { articles, categories } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Globe, ExternalLink } from 'lucide-react';
+import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
+import CalendarTodaySharpIcon from '@mui/icons-material/CalendarTodaySharp';
+import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import PublicSharpIcon from '@mui/icons-material/PublicSharp';
+import OpenInNewSharpIcon from '@mui/icons-material/OpenInNewSharp';
 
 interface NewsPageProps {
     params: Promise<{
@@ -38,10 +42,10 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
         <article className="container mx-auto px-4 py-8 max-w-4xl">
             <div className="mb-8">
                 <Link
-                    href="/"
+                    href="/headlines"
                     className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 >
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    <ArrowBackSharpIcon className="mr-2 h-4 w-4" />
                     Back to Headlines
                 </Link>
             </div>
@@ -62,27 +66,27 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground border-y border-border/50 py-4 mb-8">
                     {article.author && (
                         <div className="flex items-center gap-2">
-                            <User className="h-4 w-4" />
+                            <PersonSharpIcon className="h-4 w-4" />
                             <span className="font-medium">{article.author}</span>
                         </div>
                     )}
 
                     {article.source && (
                         <div className="flex items-center gap-2">
-                            <Globe className="h-4 w-4" />
+                            <PublicSharpIcon className="h-4 w-4" />
                             <span className="font-medium">{article.source}</span>
                         </div>
                     )}
 
                     <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
+                        <CalendarTodaySharpIcon className="h-4 w-4" />
                         <time dateTime={article.publishedAt}>{publishDate}</time>
                     </div>
                 </div>
             </header>
 
             {article.imageUrl && (
-                <figure className="mb-12 rounded-xl overflow-hidden border border-border/50 shadow-sm">
+                <figure className="mb-12 rounded-none overflow-hidden border border-border/50 shadow-sm">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={article.imageUrl}
@@ -108,10 +112,10 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
                             href={article.originalUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 py-2"
+                            className="inline-flex items-center justify-center rounded-none text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 py-2"
                         >
                             Continue Reading on {article.source || 'Original Source'}
-                            <ExternalLink className="ml-2 h-4 w-4" />
+                            <OpenInNewSharpIcon className="ml-2 h-4 w-4" />
                         </a>
                     </div>
                 )}

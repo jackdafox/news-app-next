@@ -29,7 +29,7 @@ export function ArticleCard({ article }: ArticleProps) {
     });
 
     return (
-        <Card className="overflow-hidden flex flex-col transition-all hover:shadow-md border-border/50 bg-card/50 backdrop-blur-sm group" id={`article-${article.id}`}>
+        <Card className="p-0 gap-0 overflow-hidden flex flex-col transition-all hover:shadow-md border-border/50 bg-card/50 backdrop-blur-sm group" id={`article-${article.id}`}>
             {article.imageUrl && (
                 <div className="relative h-48 w-full overflow-hidden">
                     <img

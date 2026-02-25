@@ -1,92 +1,49 @@
-'use client';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { getLatestArticles } from '@/services/newsService';
+import { AnimatedHero, HeroFeature } from '@/components/home/AnimatedHero';
 
-import { useEffect, useState } from 'react';
-import { ArticleCard } from '@/components/news/ArticleCard';
-import { Badge } from '@/components/ui/badge';
+export default async function LandingPage() {
+  const latestNews = await getLatestArticles(1, 20);
 
-export default function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [articles, setArticles] = useState<any[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [categories, setCategories] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Extract unique categories for the hero scroll
+  const uniqueCategories = new Map<string, HeroFeature>();
 
-  useEffect(() => {
-    // Fetch categories
-    fetch('/api/categories')
-      .then(res => res.json())
-      .then(data => setCategories(data.categories || []))
-      .catch(err => console.error('Failed to load categories', err));
-  }, []);
+  if (latestNews.articles) {
+    for (const article of latestNews.articles) {
+      if (article.category && !uniqueCategories.has(article.category.name)) {
+        uniqueCategories.set(article.category.name, {
+          category: article.category.name,
+          slug: article.category.slug,
+          title: article.title,
+          image: article.imageUrl || null,
+          articleSlug: article.slug,
+        });
 
-  useEffect(() => {
-    // Fetch articles (all or filtered)
-    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
-    setLoading(true);
-    const url = selectedCategory
-      ? `/api/news?category=${selectedCategory}`
-      : '/api/news';
+        if (uniqueCategories.size >= 6) {
+          break; // Let's grab up to 6 unique categories for the homepage
+        }
+      }
+    }
+  }
 
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setArticles(data.articles || []);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load articles', err);
-        setLoading(false);
-      });
-  }, [selectedCategory]);
+  const features = Array.from(uniqueCategories.values());
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-screen-2xl">
-      <header className="mb-10 text-center md:text-left">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
-          Today&apos;s Headlines
-        </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">
-          Discover the most important stories happening right now, curated specially for you.
-        </p>
-      </header>
-
-      {/* Categories Filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <Badge
-          variant={selectedCategory === null ? 'default' : 'outline'}
-          className="cursor-pointer text-sm px-4 py-1"
-          onClick={() => setSelectedCategory(null)}
-        >
-          All News
-        </Badge>
-        {categories.map(cat => (
-          <Badge
-            key={cat.id}
-            variant={selectedCategory === cat.slug ? 'default' : 'outline'}
-            className="cursor-pointer text-sm px-4 py-1"
-            onClick={() => setSelectedCategory(cat.slug)}
-          >
-            {cat.name}
-          </Badge>
-        ))}
-      </div>
-
-      {/* Articles Grid */}
-      {loading ? (
-        <div className="text-center py-20 text-muted-foreground">Loading articles...</div>
-      ) : articles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {articles.map(article => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </div>
+    <main className="flex-1 flex flex-col bg-background">
+      {features.length > 0 ? (
+        <AnimatedHero features={features} />
       ) : (
-        <div className="text-center py-20 bg-muted/30 rounded-lg border border-dashed">
-          <h3 className="text-xl font-medium mb-2">No articles found</h3>
-          <p className="text-muted-foreground">There are no articles available in this category.</p>
-        </div>
+        <section className="container px-4 py-24 mx-auto md:py-32 flex flex-col items-center text-center max-w-5xl">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 pb-2">
+            NewsHub.
+          </h1>
+          <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+            Your premium destination for the latest headlines across the globe.
+          </p>
+        </section>
       )}
+
     </main>
   );
 }
