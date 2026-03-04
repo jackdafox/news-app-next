@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsHub - Politics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700;1,800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Sectioning -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/editorial.css">
+</head>
+
+<body data-theme="dark">
+
+    <!-- Nav Component Root -->
+    <div id="nav-root"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 style="font-size: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+            Politics</h1>
+        <div id="newsEditorialContainer">
+            <!-- Injected via editorial.js -->
+        </div>
+    </main>
+
+    <!-- Scripts Sectioning -->
+    <script src="js/data.js"></script>
+    <script src="js/components/nav.js"></script>
+    <script src="js/editorial.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.CURRENT_CATEGORY = 'politics';
+            const politicsNews = window.newsData.filter(item => item.slug === 'politics');
+            renderEditorial(politicsNews);
+        });
+    </script>
+</body>
+
+</html>

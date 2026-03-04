@@ -75,7 +75,7 @@ function MegaMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })
                     <div className="flex h-[60px] items-center justify-between">
                         <div className="flex flex-1 items-center justify-start mt-1 ">
                             <Link href="/" onClick={onClose}>
-                                <span className="font-extrabold text-2xl md:text-3xl tracking-tighter text-background hover:text-background/80 transition-colors" style={{ fontFamily: 'var(--font-eb-garamond), serif', fontStyle: 'italic', letterSpacing: '-0.07em', transform: 'scaleY(1.15)', display: 'inline-block' }}>
+                                <span className="font-extrabold text-3xl md:text-3xl tracking-tighter text-background hover:text-background/80 transition-colors" style={{ fontFamily: 'var(--font-eb-garamond), serif', fontStyle: 'italic', letterSpacing: '-0.07em', transform: 'scaleY(1.15)', display: 'inline-block' }}>
                                     NewsHub
                                 </span>
                             </Link>
@@ -180,7 +180,7 @@ export function Navbar() {
                         {/* Center Section: Logo */}
                         <div className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                             <Link href="/">
-                                <span className="font-extrabold text-5xl md:text-7xl lg:text-[5.5rem] tracking-tighter text-foreground mb-5" style={{ fontFamily: 'var(--font-eb-garamond), serif', fontStyle: 'italic', letterSpacing: '-0.07em', transform: 'scaleY(1.15)', display: 'inline-block' }}>
+                                <span className="font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-tighter text-foreground mb-5" style={{ fontFamily: 'var(--font-eb-garamond), serif', fontStyle: 'italic', letterSpacing: '-0.07em', transform: 'scaleY(1.15)', display: 'inline-block' }}>
                                     NewsHub
                                 </span>
                             </Link>

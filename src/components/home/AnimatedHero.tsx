@@ -30,7 +30,7 @@ export function AnimatedHero({ features }: { features: HeroFeature[] }) {
     return (
         <div className="relative w-full bg-background mt-[-1px]">
             {/* The Visual Container */}
-            <div className="relative h-[calc(100vh)] lg:h-[calc(100vh-11em)] flex flex-col lg:flex-row items-center container mx-auto z-10 overflow-hidden">
+            <div className="relative min-h-[calc(100vh-60px)] lg:min-h-0 lg:h-[calc(100vh-11em)] py-12 lg:py-0 flex flex-col lg:flex-row items-center container mx-auto z-10 overflow-hidden">
 
                 {/* Left side: Text */}
                 <div className="lg:w-7/12 w-full flex flex-col justify-center lg:pr-8 z-20 pb-2 lg:pb-0">
@@ -45,7 +45,7 @@ export function AnimatedHero({ features }: { features: HeroFeature[] }) {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -60, opacity: 0 }}
                                 transition={{ duration: 0.4, ease: "easeOut" }}
-                                className="text-5xl md:text-[5.5rem] lg:text-[6.5rem] text-foreground leading-none absolute inset-0"
+                                className="text-4xl sm:text-5xl md:text-[5.5rem] lg:text-[6.5rem] text-foreground leading-none absolute inset-0"
                                 style={{ fontFamily: 'var(--font-eb-garamond), serif', letterSpacing: '-0.02em', paddingTop: '0.1em' }}
                             >
                                 {features[activeIndex]?.category || "Various"}
@@ -86,7 +86,7 @@ export function AnimatedHero({ features }: { features: HeroFeature[] }) {
                                     zIndex: isCenter ? 40 : 20 - Math.abs(offset),
                                 }}
                                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                className="absolute w-full lg:w-[90%] lg:aspect-[4/3] aspect-video bg-muted overflow-hidden border border-border shadow-2xl cursor-pointer"
+                                className="absolute w-[95%] sm:w-4/5 lg:w-[90%] lg:aspect-[4/3] aspect-video bg-muted overflow-hidden border border-border shadow-2xl cursor-pointer"
                                 onClick={() => !isCenter && setActiveIndex(idx)}
                             >
                                 <Link

@@ -1,0 +1,217 @@
+/* MAIN EDITORIAL CONTENT */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Category Label */
+.cat-label {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.author-label {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.author-label span {
+    font-weight: 600;
+}
+
+/* Top Story */
+.top-story {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--foreground);
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.top-story .cat-label {
+    text-align: center;
+}
+
+.top-story h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.top-story h2:hover {
+    color: var(--muted-foreground);
+}
+
+.top-story .img-container {
+    width: 100%;
+    aspect-ratio: 21/9;
+    max-height: 500px;
+    background: var(--muted);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.top-story img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.top-story p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    max-width: 56rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Second Section (Medium + List) */
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--foreground);
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .split-section {
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+}
+
+.med-story .img-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.med-story img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.med-story h3 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+    cursor: pointer;
+}
+
+.med-story p {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    max-width: 42rem;
+}
+
+.list-stories {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+    .list-stories {
+        border-left: 1px solid var(--border);
+        padding-left: 2rem;
+    }
+}
+
+.list-story {
+    cursor: pointer;
+}
+
+.list-story h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.list-story+.list-story {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Horizontal Section */
+.horizontal-stories {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hz-story {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .hz-story {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.hz-story:last-child {
+    border-bottom: none;
+}
+
+.hz-content {
+    flex: 1;
+}
+
+.hz-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.hz-content p {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.hz-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--muted);
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .hz-img {
+        width: 33.333%;
+        max-width: 300px;
+    }
+}
+
+.hz-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.hz-story:hover .hz-img img {
+    transform: scale(1.05);
+}

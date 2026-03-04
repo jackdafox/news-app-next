@@ -1,0 +1,137 @@
+/* TOP NAV */
+.top-nav {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--background);
+}
+
+.top-nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    gap: 1.5rem;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.top-nav-link {
+    background: none;
+    border: none;
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.top-nav-link:hover,
+.top-nav-link.active {
+    color: var(--muted-foreground);
+    font-weight: 700;
+}
+
+/* MAIN NAV */
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--foreground);
+    background-color: var(--background);
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.nav-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--foreground);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-btn:hover {
+    background: var(--muted);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--foreground);
+    font-family: 'Inter', sans-serif;
+}
+
+.search-bar svg {
+    color: var(--muted-foreground);
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-weight: 800;
+    font-size: 4rem;
+    letter-spacing: -0.07em;
+    transform: scaleY(1.15);
+    display: inline-block;
+    color: var(--foreground);
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.theme-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .moon-icon {
+    display: none;
+}

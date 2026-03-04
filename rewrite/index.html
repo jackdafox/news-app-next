@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsHub - Landing</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700;1,800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Sectioning -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/hero.css">
+</head>
+
+<body data-theme="dark">
+
+    <!-- Nav Component Root -->
+    <div id="nav-root"></div>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-container">
+            <!-- Left: Text -->
+            <div class="hero-text">
+                <h1 class="hero-subtitle">Find news about</h1>
+                <div class="hero-animated-text">
+                    <h2 id="heroCategoryText">Various</h2>
+                </div>
+                <button class="hero-btn" id="heroFollowBtn" onclick="window.location.href='all-news.html'">
+                    Follow More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Right: Animated Images -->
+            <div class="hero-images" id="heroImagesContainer">
+                <!-- Injected via hero.js -->
+            </div>
+        </div>
+        <hr class="hero-divider">
+    </header>
+
+    <!-- Scripts Sectioning -->
+    <script src="js/data.js"></script>
+    <script src="js/components/nav.js"></script>
+    <script src="js/hero.js"></script>
+</body>
+
+</html>
