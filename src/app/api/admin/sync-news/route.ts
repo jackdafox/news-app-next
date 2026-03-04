@@ -13,13 +13,17 @@ export async function POST() {
             );
         }
 
-        // Predefined NewsAPI categories
-        const categorySlugs = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
+        // Predefined NewsAPI categories + custom 'politics'
+        const categorySlugs = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology', 'politics'];
         let totalInsertedCount = 0;
         let totalProcessedCount = 0;
 
         for (const catSlug of categorySlugs) {
-            const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${catSlug}&apiKey=${apiKey}`);
+            let apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=${catSlug}&apiKey=${apiKey}`;
+            if (catSlug === 'politics') {
+                apiUrl = `https://newsapi.org/v2/everything?q=politics&language=en&sortBy=publishedAt&apiKey=${apiKey}`;
+            }
+            const response = await fetch(apiUrl);
 
             if (!response.ok) {
                 console.error(`NewsAPI Error for category ${catSlug}:`, await response.text());
